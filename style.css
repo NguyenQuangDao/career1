@@ -170,7 +170,6 @@ a:hover {
 .recruitment-item-info {
     justify-content: space-around;
     display: flex;
-
 }
 
 .recruitment-item-actions {
@@ -180,7 +179,6 @@ a:hover {
 }
 
 .recruitment-item-actions>a {
-
     background-color: #1C5BDA;
     padding: 15px;
     border-radius: 5px;
@@ -210,7 +208,6 @@ a:hover {
 .job-filters{
     display: flex;
     justify-content: center;
-    width: 100vw;
 }
 
 .carousel{

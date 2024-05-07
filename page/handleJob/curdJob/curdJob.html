@@ -1,69 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Travelivez Career Job</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../css/all.min.css" />
+    <link rel="stylesheet" href="./curdJob.css" />
+  </head>
 
-<head>
-    <title>Products System</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./bootstrap.min.css">
-    <link rel="stylesheet" href="./all.min.css">
-    <link rel="stylesheet" href="./curdJob.css">
-</head>
-
-<body>
+  <body>
     <div class="container overflow-auto py-3">
-        <form class="p-2">
-            <h1 class="text-center">Quản lý việc làm</h1>
-            <label for="inputName">Tên công việc:</label>
-            <input id="inputName" type="text" class="form-control my-1">
-            <div id="alertName" class="d-none alert alert-danger py-2 mb-2">This Name Is Not Valid<br>Example: Mi 9T
-            </div>
-            <label for="inputPrice">Mức lương:</label>
-            <input id="inputPrice" type="number" class="form-control my-1">
-            <div id="alertPrice" class="d-none alert alert-danger py-2 mb-2">This Price Is Not Valid<br>Example: 1000
-            </div>
-            <div class="flex">
-                <div>
-                    <label for="inputCategory">Product Category:</label>
-                    <select id="inputCategory" class="form-select mt-1 mb-2">
-                        <option value="MOBILE">MOBILE</option>
-                        <option value="TV" selected>TV</option>
-                        <option value="LAPTOB">LAPTOB</option>
-                    </select>
-                </div>
-                <div>
-                    <div id="alertCategory" class="d-none alert alert-danger py-2 mb-2">You Should Select Any Value
-                    </div>
-                    <label for="inputCondition">Product Condition:</label>
-                    <select id="inputCondition" class="form-select mt-1 mb-3">
-                        <option class="bg-success text-white" value="Excellent">Excellent</option>
-                        <option class="bg-warning text-white" value="Good" selected>Good</option>
-                        <option class="bg-danger text-white" value="Bad">Bad</option>
-                    </select>
-                </div>
-            </div>
+      <form class="p-2">
+        <h1 class="text-center">Quản lý việc làm</h1>
+        <!-- Tên công việc -->
+        <label for="inputName">Tên công việc:</label>
+        <input id="inputName" type="text" class="form-control my-1" />
+        <!-- lương -->
+        <label for="inputPrice">Mức lương:</label>
+        <input id="inputPrice" type="number" class="form-control my-1" />
+        <div class="flex">
+          <!-- số lượng -->
+          <div class="item">
+            <label for="inputNumjob">Số lượng tuyển:</label>
+            <input id="inputNumjob" type="number" class="form-control my-1" />
+          </div>
+          <!-- hạn tuyển  -->
+          <div class="item">
+            <label for="inputDatejob">Hạn chốt:</label>
+            <input id="inputDatejob" type="date" class="form-control my-1" />
+          </div>
+          <!-- loại cv -->
+          <div class="item">
+            <label for="inputTypeOfWork">Loại công việc:</label>
+            <input id="inputTypeOfWork" type="text" class="form-control my-1" />
+          </div>
+          <!-- địa điểm -->
+          <div class="item">
+            <label for="inputLocation">Địa điểm</label>
+            <input id="inputLocation" type="text" class="form-control my-1" />
+          </div>
+        </div>
+        <!-- mô tả -->
+        <label for="inputDescribe">Mô tả</label>
+        <input id="inputDescribe" type="text" class="form-control my-1" />
+        <!-- yêu cầu -->
+        <div class="input-group" style="margin: 15px 0">
+          <span class="input-group-text">Yêu cầu</span>
+          <textarea
+            class="form-control"
+            id="inputRequest"
+            aria-label="With textarea"
+          ></textarea>
+        </div>
+        <div style="margin: 15px 0">
+          <label for="inputLinkJob">Link Job</label>
+          <input id="inputLinkJob" type="text" class="form-control my-1" />
+        </div>
+        <!-- button -->
+        <div class="text-center w-100">
+          <button
+            id="btnAdd"
+            class="btn mb-1 mb-sm-0 btn-success text-white"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Thêm việc làm
+          </button>
+          <button
+            id="btnClear"
+            class="btn mb-1 mb-sm-0 btn-outline-success"
+            type="button"
+          >
+            Clear Form
+          </button>
+        </div>
+      </form>
 
-            <div id="alertCondition" class="d-none alert alert-danger py-2 mb-2">You Should Select Any Value</div>
-            <div class="text-center w-100">
-                <button id="btnAdd" class="btn mb-1 mb-sm-0 btn-success text-white" type="button">Add Product</button>
-                <button id="btnClear" class="btn mb-1 mb-sm-0 btn-outline-success" type="button">Clear Form</button>
-            </div>
-            <input id="inputSearch" class="form-control my-4" placeholder="Search By Name..." type="search">
-        </form>
-        <table class="table table-striped text-center p-2">
-            <thead>
-                <th>Index</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Condition</th>
-                <th>Actions</th>
-            </thead>
-            <tbody id="tableBody"></tbody>
-        </table>
+      <form class="p-2" style="margin-top: 50px">
+        <h1 class="text-lg-start">Danh sách việc làm</h1>
+        <div class="job-filters">
+          <div class="filters">
+            <label for="location">Nơi làm việc:</label>
+            <select id="location">
+              <option value="all">Tất cả</option>
+              <option value="Hà Nội">Hà Nội</option>
+              <option value="Hải Phòng">Hải Phòng</option>
+              <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+              <!-- Thêm các tùy chọn khác nếu cần -->
+            </select>
+
+            <label for="job-type">Loại công việc:</label>
+            <select id="job-type">
+              <option value="all">Tất cả</option>
+              <option value="code">Lập trình</option>
+              <option value="sale">Sale</option>
+              <option value="design">Thiết kế</option>
+            </select>
+          </div>
+          <div id="jobs-container"></div>
+        </div>
+      </form>
     </div>
+ 
     <script src="./curdJob.js"></script>
-</body>
-
+  </body>
 </html>

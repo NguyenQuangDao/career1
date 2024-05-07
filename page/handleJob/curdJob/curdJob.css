@@ -8,5 +8,342 @@ i:hover {
 
 .flex {
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .item {
+    flex: 1 1 300px; 
+  }
+  .flex .item:last-child{
+  }
+
+  .item label {
+    display: block;
+  }
+
+  .form-control {
+    width: 100%; /* Chiếm toàn bộ chiều rộng của item */
+    box-sizing: border-box; /* Đảm bảo kích thước của input bao gồm cả padding và border */
+  }
+
+
+  * {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: travelivez;
+    src: url(Montserrat/Montserrat-VariableFont_wght.ttf);
+}
+
+body {
+    font-family: travelivez;
+}
+
+nav {
+    height: 100px;
+    width: 100%;
+    
+}
+
+label.logo {
+    padding: 0 100px;
+}
+
+label.logo>img {
+    width: 200px;
+    margin-top: 10px;
+}
+
+nav ul {
+    float: right;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: black;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 7px 13px;
+    border-radius: 5px;
+}
+
+nav ul li {
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 5px;
+}
+
+a.active,
+a:hover {
+    background: #1b9bff;
+    transition: 0.5s;
+    color: white;
+    font-weight: bold;
+}
+
+.checkbtn {
+    font-size: 30px;
+    color: black;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+#check {
+    display: none;
+}
+
+@media (max-width: 1440px) {
+    label.logo {
+        padding-left: 30px;
+    }
+
+    label.logo>img {
+        width: 100px;
+        margin-top: 25px;
+    }
+
+    nav ul li a {
+        font-size: 10px;
+    }
+}
+
+
+
+/* Carousel */
+.carousel {
+    position: relative;
+    width: 50vw;
+    /* Chiều rộng carousel */
+    margin: 0 auto;
+    /* Canh giữa carousel */
+    overflow: hidden;
+    /* Ẩn slide khi tràn ra ngoài */
+    z-index: -1;
+}
+
+.carousel-container {
+    display: flex;
+    transition: transform 0.5s ease;
+    /* Hiệu ứng chuyển đổi mượt mà */
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    /* Chiếm toàn bộ chiều rộng carousel */
+    min-width: 100%;
+    /* Đảm bảo slide không nhỏ hơn carousel */
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+}
+
+#menu-logo {
+    width: 20px;
+}
+
+/* Nút điều khiển */
+.prev-btn,
+.next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    background-color: transparent;
+    color: black;
+    cursor: pointer;
+    border: none;
+    font-size: 20px;
+}
+
+.prev-btn {
+    left: 0;
+    color: aliceblue;
+}
+
+.next-btn {
+    right: 0;
+    color: aliceblue;
+}
+  
+
+.recruitment-item {
+    border: 2px solid #FFFFFF;
+    /* Border */
+    box-shadow: 2px 2px 5px #84818160;
+    padding: 20px;
+    max-width: 1000px;
+    border-radius: 5px;
+    margin: 20px;
+}
+
+.recruitment-item-info {
+    justify-content: space-around;
+    display: flex;
+}
+
+.recruitment-item-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recruitment-item-actions>a {
+    background-color: #1C5BDA;
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    margin: 20px 30px ;
+}
+.delete-button{
+    background-color: tomato;
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    margin-left: -20px;
+    border: none;
+}
+
+.recruitment-item-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recruitment-item-image>img {
+    width: 100px;
+    margin: 20px 30px ;
+}
+
+@media (max-width: 767px) {
+
+    .job-filters{
+        flex-direction: column;
+    }
+}
+
+.job-filters{
+    display: flex;
+    justify-content: center;
+}
+
+.carousel{
+    margin-bottom: 20px;
+}
+
+.carousel-slide{
+   
+    max-height: 300px;
+}
+
+.filters{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    justify-content:start;
+}
+
+.filters > select{
+    margin: 10px 20px;
+    padding: 10px 20px;
+    border-radius: 3px;
+}
+
+.filters > label{
+    font-weight: bold;
+}
+
+select > option{
+    margin: 10px 30px;
+    padding: 10px 30px;
+}
+
+footer{
+    display: flex;
+    padding: 30px;
+    justify-content: space-around;
+    background-color: #333F48;
+    color: white;
+}
+
+.support > ul > li{
+    margin: 20px;
+}
+
+.about > ul > li{
+    margin: 20px;
+}
+
+.support > ul > li{
+    margin: 20px;
+}
+
+.contact > ul > li{
+    margin:20px;
+}
+
+@media (max-width: 1020px) {
+    .checkbtn {
+        flex-direction: column;
+    }
+
+    footer{
+        flex-direction: column;
+        justify-content: center;
+        
+    }
+
+    nav ul {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        background: rgba(9, 9, 9, 0.799);
+        transition: all 0.5s ease;
+
+    }
+
+    nav ul li {
+        display: block;
+    }
+
+    nav ul li a {
+        font-size: 20px;
+        color: aliceblue;
+    }
+
+    a:hover,
+    a.active {
+        background: none;
+        color: #0082e6;
+    }
+
+    #check:checked~ul {
+        left: 0;
+    }
 }

@@ -42,31 +42,31 @@ function changeSlide() {
 intervalId = setInterval(changeSlide, 3000);
 
 document.addEventListener("DOMContentLoaded", function () {
-  const jobsContainer = document.getElementById('jobs-container');
-  const locationFilter = document.getElementById('location');
-  const jobTypeFilter = document.getElementById('job-type');
-
+  const jobsContainer = document.getElementById("jobs-container");
+  const locationFilter = document.getElementById("location");
+  const jobTypeFilter = document.getElementById("job-type");
 
   function fetchAndDisplayJobs() {
-
-    fetch('https://6411ea8ff9fe8122ae17b101.mockapi.io/travelivez-career')
-      .then(response => response.json())
-      .then(data => {
+    fetch("https://6411ea8ff9fe8122ae17b101.mockapi.io/travelivez-career")
+      .then((response) => response.json())
+      .then((data) => {
         displayJobs(data);
       })
-      .catch(error => console.error('Error fetching data:', error));
+      .catch((error) => console.error("Error fetching data:", error));
   }
 
-
   function displayJobs(jobs) {
-    jobsContainer.innerHTML = '';
+    jobsContainer.innerHTML = "";
 
-    jobs.forEach(job => {
-      console.log(job.dia_diem)
-      if ((locationFilter.value === 'all' || job.dia_diem === locationFilter.value) &&
-        (jobTypeFilter.value === 'all' || job.loai_cong_viec === jobTypeFilter.value)) {
-        const jobItem = document.createElement('div');
-        jobItem.classList.add('recruitment-item');
+    jobs.forEach((job) => {
+      if (
+        (locationFilter.value === "all" ||
+          job.dia_diem === locationFilter.value) &&
+        (jobTypeFilter.value === "all" ||
+          job.loai_cong_viec === jobTypeFilter.value)
+      ) {
+        const jobItem = document.createElement("div");
+        jobItem.classList.add("recruitment-item");
 
         var jobInfoContainer = document.createElement("div");
         jobInfoContainer.classList.add("recruitment-item-info");
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var jobImageElement = document.createElement("div");
         jobImageElement.classList.add("recruitment-item-image");
         var logoImageElement = document.createElement("img");
-        logoImageElement.src = "img/logo.png";
+        logoImageElement.src = "../../../img/logo.png";
         logoImageElement.alt = "";
         jobImageElement.appendChild(logoImageElement);
 
@@ -108,12 +108,16 @@ document.addEventListener("DOMContentLoaded", function () {
         jobDetailElement.appendChild(jobSalaryElement);
         jobDetailElement.appendChild(jobMetaElement);
 
+        //xem chi tiết job
         var jobActionsElement = document.createElement("div");
         jobActionsElement.classList.add("recruitment-item-actions");
         var jobLinkElement = document.createElement("a");
-        jobLinkElement.href = job.link;
+        jobLinkElement.href = "../../../page/job-detail/job-detail.html";
         jobLinkElement.textContent = "Chi tiết";
         jobActionsElement.appendChild(jobLinkElement);
+        jobLinkElement.addEventListener("click", function (event) {
+          displayJobDetail(job);
+        });
 
         jobInfoContainer.appendChild(jobImageElement);
         jobInfoContainer.appendChild(jobDetailElement);
@@ -124,9 +128,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  locationFilter.addEventListener('change', fetchAndDisplayJobs);
-  jobTypeFilter.addEventListener('change', fetchAndDisplayJobs);
+  locationFilter.addEventListener("change", fetchAndDisplayJobs);
+  jobTypeFilter.addEventListener("change", fetchAndDisplayJobs);
   fetchAndDisplayJobs();
-});
 
+  //   job chi tiết
+  function displayJobDetail(job) {
+    // Gửi dữ liệu sang trang khác thông qua Local Storage
+    localStorage.setItem("DetailJob", JSON.stringify(job));
+  }
+});
 
