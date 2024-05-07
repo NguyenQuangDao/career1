@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelivez Career</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"><img id="menu-logo" src="img/menu.png" alt=""></i>
+        </label>
+        <label class="logo">
+            <img src="img/logo.png" alt="">
+        </label>
+        <ul>
+            <li><a href="./page/handleJob/curdJob/curdJob.html">CURD JOB</a></li>
+            <li><a href="#">GIỚI THIỆU CHUNG</a></li>
+            <li><a href="#">MÔI TRƯỜNG LÀM VIỆC</a></li>
+            <li><a href="#">CHẾ ĐỘ ĐÃI NGỘ</a></li>
+            <li><a href="#">DỰ ÁN HỢP TÁC</a></li>
+            <li><a class="active" href="#">TUYỂN DỤNG</a></li>
+        </ul>
+    </nav>
+
+    <section class="carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <img src="img/anh1.jpg" alt="Hình ảnh 1">
+
+            </div>
+            <div class="carousel-slide">
+                <img src="img/anh2.jpg" alt="Hình ảnh 2">
+
+            </div>
+            <div class="carousel-slide">
+                <img src="img/anh3.webp" alt="Hình ảnh 3">
+
+            </div>
+        </div>
+        <button class="prev-btn">
+        </button>
+        <button class="next-btn"></button>
+    </section>
+
+    <div class="job-filters">
+        <div class="filters">
+            <label for="location">Nơi làm việc:</label>
+            <select id="location">
+                <option value="all">Tất cả</option>
+                <option value="Hà Nội">Hà Nội</option>
+                <option value="Hải Phòng">Hải Phòng</option>
+                <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                <!-- Thêm các tùy chọn khác nếu cần -->
+            </select>
+
+            <label for="job-type">Loại công việc:</label>
+            <select id="job-type">
+                <option value="all">Tất cả</option>
+                <option value="code">Lập trình</option>
+                <option value="sale">Sale</option>
+                <option value="design">Thiết kế</option>
+            </select>
+        </div>
+
+        <div id="jobs-container"></div>
+    </div>
+
+
+    <footer>
+        <div class="contact">
+
+            <ul>
+                <li>
+                    Hot line
+                </li>
+                <li>+84 961 314 013</li>
+                <li>Email for Us</li>
+                <li>admin@travelivez.com</li>
+
+            </ul>
+        </div>
+
+        <div class="about">
+            <ul>
+                <li>Về chúng tôi</li>
+                <li>Công đồng Travelivez</li>
+                <li>Liên hệ hợp tác</li>
+                <li>Tuyển dụng</li>
+                <li>Chính sách bảo mật</li>
+            </ul>
+        </div>
+
+        <div class="support">
+            <ul>
+                <li>Tài khoản</li>
+                <li>Cách đặt chỗ</li>
+                <li>Câu hỏi thường gặp</li>
+                <li>Quy trình thanh toán</li>
+                <li>Chính sách CTV</li>
+            </ul>
+        </div>
+
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

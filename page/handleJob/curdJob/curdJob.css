@@ -1,0 +1,12 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+i:hover {
+    cursor: pointer;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}

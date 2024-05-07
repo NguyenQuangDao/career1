@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Products System</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <link rel="stylesheet" href="./all.min.css">
+    <link rel="stylesheet" href="./curdJob.css">
+</head>
+
+<body>
+    <div class="container overflow-auto py-3">
+        <form class="p-2">
+            <h1 class="text-center">Quản lý việc làm</h1>
+            <label for="inputName">Tên công việc:</label>
+            <input id="inputName" type="text" class="form-control my-1">
+            <div id="alertName" class="d-none alert alert-danger py-2 mb-2">This Name Is Not Valid<br>Example: Mi 9T
+            </div>
+            <label for="inputPrice">Mức lương:</label>
+            <input id="inputPrice" type="number" class="form-control my-1">
+            <div id="alertPrice" class="d-none alert alert-danger py-2 mb-2">This Price Is Not Valid<br>Example: 1000
+            </div>
+            <div class="flex">
+                <div>
+                    <label for="inputCategory">Product Category:</label>
+                    <select id="inputCategory" class="form-select mt-1 mb-2">
+                        <option value="MOBILE">MOBILE</option>
+                        <option value="TV" selected>TV</option>
+                        <option value="LAPTOB">LAPTOB</option>
+                    </select>
+                </div>
+                <div>
+                    <div id="alertCategory" class="d-none alert alert-danger py-2 mb-2">You Should Select Any Value
+                    </div>
+                    <label for="inputCondition">Product Condition:</label>
+                    <select id="inputCondition" class="form-select mt-1 mb-3">
+                        <option class="bg-success text-white" value="Excellent">Excellent</option>
+                        <option class="bg-warning text-white" value="Good" selected>Good</option>
+                        <option class="bg-danger text-white" value="Bad">Bad</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="alertCondition" class="d-none alert alert-danger py-2 mb-2">You Should Select Any Value</div>
+            <div class="text-center w-100">
+                <button id="btnAdd" class="btn mb-1 mb-sm-0 btn-success text-white" type="button">Add Product</button>
+                <button id="btnClear" class="btn mb-1 mb-sm-0 btn-outline-success" type="button">Clear Form</button>
+            </div>
+            <input id="inputSearch" class="form-control my-4" placeholder="Search By Name..." type="search">
+        </form>
+        <table class="table table-striped text-center p-2">
+            <thead>
+                <th>Index</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Condition</th>
+                <th>Actions</th>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+    <script src="./curdJob.js"></script>
+</body>
+
+</html>
