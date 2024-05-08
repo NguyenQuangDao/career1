@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var jobImageElement = document.createElement("div");
         jobImageElement.classList.add("recruitment-item-image");
         var logoImageElement = document.createElement("img");
-        logoImageElement.src = "../../../img/logo.png";
+        logoImageElement.src = "./img/logo.png";
         logoImageElement.alt = "";
         jobImageElement.appendChild(logoImageElement);
 
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var jobActionsElement = document.createElement("div");
         jobActionsElement.classList.add("recruitment-item-actions");
         var jobLinkElement = document.createElement("a");
-        jobLinkElement.href = "../../../page/job-detail/job-detail.html";
+        jobLinkElement.href = "./page/job-detail/job-detail.html";
         jobLinkElement.textContent = "Chi tiết";
         jobActionsElement.appendChild(jobLinkElement);
         jobLinkElement.addEventListener("click", function (event) {

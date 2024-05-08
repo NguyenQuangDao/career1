@@ -29,4 +29,5 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     console.error("No data found in Local Storage.");
   }
+
 });

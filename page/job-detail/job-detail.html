@@ -1,219 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Detail Job</title>
-    <link rel="stylesheet" href="../css/all.min.css" />
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./job-detail.css" />
-  </head>
-  <body>
-    <div class="detailJob container overflow-auto py-lg-2">
-      <p id="ten_cong_viec"></p>
-      <div id="muc_luong"></div>
-      <div id="so_luong_tuyen"></div>
-      <div id="han_chot_tuyen"></div>
-      <div id="loai_cong_viec"></div>
-      <div id="dia_diem"></div>
-      <div id="mo_ta"></div>
-      <div id="yeu_cau"></div>
-      <div id="link_job"></div>
 
-      <div class="form_ungtuyen">
-        <h3><strong>Nộp đơn ứng tuyển</strong></h3>
-        <div class="mb-3 row">
-          <label for="staticten_cong_viec" class="col-sm-2 col-form-label"
-            >Vị trí ứng tuyển</label
-          >
-          <div class="col-sm-10">
-            <input
-              type="text"
-              style="
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Job</title>
+  <link rel="stylesheet" href="../css/all.min.css" />
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./job-detail.css" />
+</head>
+
+<body>
+  <div class="detailJob container overflow-auto py-lg-2">
+    <p id="ten_cong_viec"></p>
+    <div id="muc_luong"></div>
+    <div id="so_luong_tuyen"></div>
+    <div id="han_chot_tuyen"></div>
+    <div id="loai_cong_viec"></div>
+    <div id="dia_diem"></div>
+    <div id="mo_ta"></div>
+    <div id="yeu_cau"></div>
+    <div id="link_job"></div>
+
+    <div class="form_ungtuyen">
+      <h3><strong>Nộp đơn ứng tuyển</strong></h3>
+      <div class="mb-3 row">
+        <label for="staticten_cong_viec" class="col-sm-2 col-form-label">Vị trí ứng tuyển</label>
+        <div class="col-sm-10">
+          <input type="text" style="
                 background: #e9ecef;
                 border-radius: 0.375rem;
                 padding-left: 15px;
-              "
-              readonly
-              class="form-control-plaintext"
-              id="staticten_cong_viec"
-              value=""
-            />
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="ho_va_ten" class="col-sm-2 col-form-label"
-            >Họ và tên</label
-          >
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="ho_va_ten" />
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="SDT" class="col-sm-2 col-form-label">ĐT di động</label>
-          <div class="col-sm-10">
-            <input type="tel" class="form-control" id="SDT" />
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="Email" class="col-sm-2 col-form-label">Email</label>
-          <div class="col-sm-10">
-            <input type="email" class="form-control" id="Email" />
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="khu_vuc_du_tuyen" class="col-sm-2 col-form-label"
-            >Khu vực dự tuyển</label
-          >
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="khu_vuc_du_tuyen" />
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="muc_luong" class="col-sm-2 col-form-label"
-            >Mức lương mong muốn</label
-          >
-          <div class="col-sm-10">
-            <input
-              type="number"
-              placeholder="Triệu đồng"
-              class="form-control"
-              id="muc_luong_mongmuon"
-            />
-          </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="timeGoJob" class="col-sm-2 col-form-label"
-            >Thời gian có thể đi làm</label
-          >
-          <div class="col-sm-10">
-            <input type="date" class="form-control" id="timeGoJob" />
-          </div>
-        </div>
-        <p>
-          <b>CV</b>
-          <span style="color: #4c4a4a">(Click để tải lên CV của bạn)</span>
-        </p>
-        <div class="mb-3">
-          <input class="form-control" type="file" id="formFile" />
-        </div>
-        <div class="col-12">
-          <div class="btn btn-primary" id="submit_ungtuyen">Ứng tuyển ngay</div>
+              " readonly class="form-control-plaintext" id="staticten_cong_viec" value="" />
         </div>
       </div>
+      <div class="mb-3 row">
+        <label for="ho_va_ten" class="col-sm-2 col-form-label">Họ và tên</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="ho_va_ten" />
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="SDT" class="col-sm-2 col-form-label">ĐT di động</label>
+        <div class="col-sm-10">
+          <input type="tel" class="form-control" id="SDT" />
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="Email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="Email" />
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="khu_vuc_du_tuyen" class="col-sm-2 col-form-label">Khu vực dự tuyển</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="khu_vuc_du_tuyen" />
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="muc_luong" class="col-sm-2 col-form-label">Mức lương mong muốn</label>
+        <div class="col-sm-10">
+          <input type="number" placeholder="Triệu đồng" class="form-control" id="muc_luong_mongmuon" />
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="timeGoJob" class="col-sm-2 col-form-label">Thời gian có thể đi làm</label>
+        <div class="col-sm-10">
+          <input type="date" class="form-control" id="timeGoJob" />
+        </div>
+      </div>
+      <p>
+        <b>CV</b>
+        <span style="color: #4c4a4a">(Click để tải lên CV của bạn)</span>
+      </p>
+      <div class="mb-3">
+        <input class="form-control" type="file" id="formFile" />
+      </div>
+      <div class="col-12">
+        <div class="btn btn-primary" id="submit_ungtuyen">Ứng tuyển ngay</div>
+      </div>
+      <!-- test Tải CV -->
+      <!-- <div class="col-12" style="margin-top: 20px;">
+        <div class="btn btn-primary" id="submit_taicv"><a
+            href="https://firebasestorage.googleapis.com/v0/b/travelivez-career.appspot.com/o/files%2Fimg_01.png?alt=media&token=59be3b33-9cb1-4622-bf01-a16be28a68ab"
+            download="">Tải CV</a></div>
+      </div> -->
     </div>
-    <script src="./job-detail.js"></script>
-    <script type="module">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
-      import {
-        getFirestore,
-        addDoc,
-        doc,
-        collection,
-        Timestamp,
-      } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
-      import {
-        getStorage,
-        ref,
-        uploadBytesResumable,
-        getDownloadURL,
-      } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
+  </div>
+  <script src="./job-detail.js"></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
+    import {
+      getFirestore,
+      addDoc,
+      doc,
+      collection,
+      getDocs,
+      Timestamp,
+    } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+    import {
+      getStorage,
+      ref,
+      uploadBytesResumable,
+      getDownloadURL,
+    } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
 
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      const firebaseConfig = {
-        apiKey: "AIzaSyCWRu_5X9O_cHMcMXQ76J3xu7T_wlRlpwg",
-        authDomain: "tuyendung-ddb38.firebaseapp.com",
-        projectId: "tuyendung-ddb38",
-        storageBucket: "tuyendung-ddb38.appspot.com",
-        messagingSenderId: "534249087557",
-        appId: "1:534249087557:web:aa9a4334a58c8644ebf92c",
-        measurementId: "G-6MTRZ0HG5X",
-      };
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    //  const firebaseConfig = {
+    // apiKey: "AIzaSyCWRu_5X9O_cHMcMXQ76J3xu7T_wlRlpwg",
+    //  authDomain: "tuyendung-ddb38.firebaseapp.com",
+    //  projectId: "tuyendung-ddb38",
+    //storageBucket: "tuyendung-ddb38.appspot.com",
+    //  messagingSenderId: "534249087557",
+    // appId: "1:534249087557:web:aa9a4334a58c8644ebf92c",
+    //  measurementId: "G-6MTRZ0HG5X",
+    //};
 
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-      const db = getFirestore(app);
-      const storage = getStorage(app);
-      // dữ liệu nộp cv
+    const firebaseConfig = {
+      apiKey: "AIzaSyARklL3NIV41rUdtS1ae0bUSHtB2DHLShI",
+      authDomain: "travelivez-career.firebaseapp.com",
+      projectId: "travelivez-career",
+      storageBucket: "travelivez-career.appspot.com",
+      messagingSenderId: "946388351840",
+      appId: "1:946388351840:web:2068ceddc2b1c084b13c05",
+      measurementId: "G-HNP393B75Q"
+    };
 
-      let staticten_cong_viec = document.getElementById("staticten_cong_viec");
-      let ho_va_ten = document.getElementById("ho_va_ten");
-      let SDT = document.getElementById("SDT");
-      let Email = document.getElementById("Email");
-      let khu_vuc_du_tuyen = document.getElementById("khu_vuc_du_tuyen");
-      let muc_luong_mongmuon = document.getElementById("muc_luong_mongmuon");
-      let timeGoJob = document.getElementById("timeGoJob");
-      let formFile = document.getElementById("formFile");
-      let submit_ungtuyen = document.getElementById("submit_ungtuyen");
 
-      // Thêm sự kiện click vào nút "submit_ungtuyen"
-      submit_ungtuyen.addEventListener("click", async function () {
-        // Lấy giá trị từ các ô input
-        let staticten_cong_viec_value = staticten_cong_viec.value;
-        let ho_va_ten_value = ho_va_ten.value;
-        let SDT_value = SDT.value;
-        let Email_value = Email.value;
-        let khu_vuc_du_tuyen_value = khu_vuc_du_tuyen.value;
-        let muc_luong_mongmuon_value = muc_luong_mongmuon.value;
-        let timeGoJob_value = timeGoJob.value;
-        let formFile_value = formFile.value;
-        // Kiểm tra xem đã chọn tệp chưa
-        if (!formFile_value) {
-          console.error("No file selected!");
-          return;
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+
+
+    // dữ liệu nộp cv
+    let staticten_cong_viec = document.getElementById("staticten_cong_viec");
+    let ho_va_ten = document.getElementById("ho_va_ten");
+    let SDT = document.getElementById("SDT");
+    let Email = document.getElementById("Email");
+    let khu_vuc_du_tuyen = document.getElementById("khu_vuc_du_tuyen");
+    let muc_luong_mongmuon = document.getElementById("muc_luong_mongmuon");
+    let timeGoJob = document.getElementById("timeGoJob");
+    let formFile = document.getElementById("formFile");
+    let submit_ungtuyen = document.getElementById("submit_ungtuyen");
+
+    // Thêm sự kiện click vào nút "submit_ungtuyen"
+    submit_ungtuyen.addEventListener("click", async function () {
+      // Lấy giá trị từ các ô input
+      let staticten_cong_viec_value = staticten_cong_viec.value;
+      let ho_va_ten_value = ho_va_ten.value;
+      let SDT_value = SDT.value;
+      let Email_value = Email.value;
+      let khu_vuc_du_tuyen_value = khu_vuc_du_tuyen.value;
+      let muc_luong_mongmuon_value = muc_luong_mongmuon.value;
+      let timeGoJob_value = timeGoJob.value;
+      let formFile_value = formFile.value;
+      // Kiểm tra xem đã chọn tệp chưa
+      if (!formFile_value) {
+        console.error("No file selected!");
+        return;
+      }
+      // lấy file
+      const file = document.getElementById("formFile").files[0];
+      // Tạo tham chiếu đến thư mục lưu trữ tệp
+      const storageRef = ref(storage, "files/" + file.name);
+      if (
+        staticten_cong_viec_value != "" &&
+        SDT_value != "" &&
+        formFile_value != ""
+      ) {
+        try {
+          // Tải tệp lên Firebase Storage
+          const uploadTask = uploadBytesResumable(storageRef, file);
+
+          uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+              // Quản lý tiến trình tải lên nếu cần
+            },
+            (error) => {
+              console.error("Error uploading file: ", error);
+            },
+            async () => {
+              // Tải tệp thành công, lấy URL của tệp
+              await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                // Tạo object chứa dữ liệu cần thêm vào Firestore
+                let userData = {
+                  ten_cong_viec: staticten_cong_viec_value,
+                  ho_va_ten: ho_va_ten_value,
+                  SDT: SDT_value,
+                  Email: Email_value,
+                  khu_vuc_du_tuyen: khu_vuc_du_tuyen_value,
+                  muc_luong: muc_luong_mongmuon_value,
+                  timeGoJob: timeGoJob_value,
+                  formFile: downloadURL, // Lưu đường dẫn của tệp
+                };
+
+                // Thêm dữ liệu vào Firestore
+                const docRef = addDoc(collection(db, "ungtuyen"), userData);
+              });
+              clearForm();
+              alert('Đã gửi thông tin thành công.');
+            }
+          );
+        } catch (error) {
+          console.error("Error uploading file: ", error);
+          alert('Gửi thông tin thất bại.');
         }
-        const file = event.target.formFile_value[0]; // Lấy tệp đầu tiên từ danh sách các tệp đã chọn
-        // Tạo tham chiếu đến thư mục lưu trữ tệp
-        const storageRef = ref(storage, "files/" + formFile_value.name);
-        if (
-          staticten_cong_viec_value != "" &&
-          SDT_value != "" &&
-          formFile_value != ""
-        ) {
-          try {
-            // Tải tệp lên Firebase Storage
-            const uploadTask = uploadBytesResumable(storageRef, file);
+      }
+    });
+    // clearForm
+    function clearForm() {
+      ho_va_ten.value = "";
+      SDT.value = "";
+      Email.value = "";
+      khu_vuc_du_tuyen.value = "";
+      muc_luong_mongmuon.value = "";
+      timeGoJob.value = "";
+      formFile.value = "";
+    }
 
-            uploadTask.on(
-              "state_changed",
-              (snapshot) => {
-                // Quản lý tiến trình tải lên nếu cần
-              },
-              (error) => {
-                console.error("Error uploading file: ", error);
-              },
-              () => {
-                // Tải tệp thành công, lấy URL của tệp
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                  // Tạo object chứa dữ liệu cần thêm vào Firestore
-                  let userData = {
-                    ten_cong_viec: staticten_cong_viec_value,
-                    ho_va_ten: ho_va_ten_value,
-                    SDT: SDT_value,
-                    Email: Email_value,
-                    khu_vuc_du_tuyen: khu_vuc_du_tuyen_value,
-                    muc_luong: muc_luong_mongmuon,
-                    timeGoJob: timeGoJob_value,
-                    formFile: downloadURL, // Lưu đường dẫn của tệp
-                  };
 
-                  // Thêm dữ liệu vào Firestore
-                  const docRef = addDoc(collection(db, "ungtuyen"), userData);
-                  console.log("Document written with ID: ", docRef.id);
-                });
-              }
-            );
-          } catch (error) {
-            console.error("Error uploading file: ", error);
-          }
-        }
-      });
-    </script>
-  </body>
+
+  </script>
+</body>
+
 </html>
