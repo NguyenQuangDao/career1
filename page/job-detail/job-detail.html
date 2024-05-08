@@ -12,16 +12,18 @@
 
 <body>
   <div class="detailJob container overflow-auto py-lg-2">
-    <p id="ten_cong_viec"></p>
-    <div id="muc_luong"></div>
-    <div id="so_luong_tuyen"></div>
-    <div id="han_chot_tuyen"></div>
-    <div id="loai_cong_viec"></div>
-    <div id="dia_diem"></div>
-    <div id="mo_ta"></div>
-    <div id="yeu_cau"></div>
-    <div id="link_job"></div>
-
+    <div class="form_gioithieuJob">
+      <p id="ten_cong_viec"></p>
+      <div id="muc_luong"></div>
+      <div id="so_luong_tuyen"></div>
+      <div id="han_chot_tuyen"></div>
+      <div id="loai_cong_viec"></div>
+      <div id="dia_diem"></div>
+      <div id="mo_ta"></div>
+      <div id="yeu_cau"></div>
+      <div id="link_job"></div>
+    </div>
+    <!-- form_ungtuyen -->
     <div class="form_ungtuyen">
       <h3><strong>Nộp đơn ứng tuyển</strong></h3>
       <div class="mb-3 row">
@@ -87,25 +89,40 @@
             download="">Tải CV</a></div>
       </div> -->
     </div>
+
+    <!-- danh sach ứng tuyển -->
+    <div class="ds_ungtuyen">
+      <h3>Danh sách ứng tuyển</h3>
+      <table id="cvRecruitmentTable" class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tên</th>
+            <th scope="col">Email</th>
+            <th scope="col">SĐT</th>
+            <th scope="col">Khu vực tuyển</th>
+            <th scope="col">Mức lương (Triệu)</th>
+            <th scope="col">Thời gian đi làm</th>
+            <!-- Thêm các cột khác tùy thuộc vào dữ liệu bạn muốn hiển thị -->
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
+        </tbody>
+      </table>
+    </div>
   </div>
+
   <script src="./job-detail.js"></script>
   <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
     import {
-      getFirestore,
-      addDoc,
-      doc,
-      collection,
-      getDocs,
-      Timestamp,
+      getFirestore, addDoc, doc, collection, getDocs, Timestamp, query, where
     } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
     import {
-      getStorage,
-      ref,
-      uploadBytesResumable,
-      getDownloadURL,
+      getStorage, ref, uploadBytesResumable, getDownloadURL,
     } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -140,6 +157,35 @@
     const storage = getStorage(app);
 
 
+    // Lấy dữ liệu việc làm từ Local Storage
+    const dataString = localStorage.getItem("DetailJob");
+    if (dataString) {
+      const dataJob = JSON.parse(dataString);
+      let ten_cong_viec = document.getElementById("ten_cong_viec");
+      let muc_luong = document.getElementById("muc_luong");
+      let so_luong_tuyen = document.getElementById("so_luong_tuyen");
+      let han_chot_tuyen = document.getElementById("han_chot_tuyen");
+      let loai_cong_viec = document.getElementById("loai_cong_viec");
+      let dia_diem = document.getElementById("dia_diem");
+      let mo_ta = document.getElementById("mo_ta");
+      let yeu_cau = document.getElementById("yeu_cau");
+      let link_job = document.getElementById("link_job");
+      let staticten_cong_viec = document.getElementById("staticten_cong_viec");
+      // Gán dữ liệu vào các phần tử HTML
+      ten_cong_viec.textContent = dataJob.ten_cong_viec;
+      muc_luong.textContent = dataJob.muc_luong;
+      so_luong_tuyen.textContent = dataJob.so_luong_tuyen;
+      han_chot_tuyen.textContent = dataJob.han_chot_tuyen;
+      loai_cong_viec.textContent = dataJob.loai_cong_viec;
+      dia_diem.textContent = dataJob.dia_diem;
+      mo_ta.textContent = dataJob.mo_ta;
+      yeu_cau.textContent = dataJob.yeu_cau;
+      link_job.textContent = dataJob.link_job;
+      staticten_cong_viec.value = dataJob.ten_cong_viec;
+    } else {
+      console.error("No data found in Local Storage.");
+    }
+
     // dữ liệu nộp cv
     let staticten_cong_viec = document.getElementById("staticten_cong_viec");
     let ho_va_ten = document.getElementById("ho_va_ten");
@@ -153,7 +199,7 @@
 
     // Thêm sự kiện click vào nút "submit_ungtuyen"
     submit_ungtuyen.addEventListener("click", async function () {
-      // Lấy giá trị từ các ô input
+      let idJob = JSON.parse(dataString).id;
       let staticten_cong_viec_value = staticten_cong_viec.value;
       let ho_va_ten_value = ho_va_ten.value;
       let SDT_value = SDT.value;
@@ -162,28 +208,24 @@
       let muc_luong_mongmuon_value = muc_luong_mongmuon.value;
       let timeGoJob_value = timeGoJob.value;
       let formFile_value = formFile.value;
-      // Kiểm tra xem đã chọn tệp chưa
-      if (!formFile_value) {
-        console.error("No file selected!");
-        return;
-      }
-      // lấy file
-      const file = document.getElementById("formFile").files[0];
-      // Tạo tham chiếu đến thư mục lưu trữ tệp
-      const storageRef = ref(storage, "files/" + file.name);
       if (
         staticten_cong_viec_value != "" &&
-        SDT_value != "" &&
+        ho_va_ten_value != "" &&
+        khu_vuc_du_tuyen_value != "" &&
+        timeGoJob_value != "" &&
+        SDT_value != "" && Email_value != "" &&
         formFile_value != ""
       ) {
         try {
-          // Tải tệp lên Firebase Storage
+          // lấy file
+          const file = document.getElementById("formFile").files[0];
+          // Tạo tham chiếu đến thư mục lưu trữ tệp
+          const storageRef = ref(storage, "files/" + file.name);
           const uploadTask = uploadBytesResumable(storageRef, file);
 
           uploadTask.on(
             "state_changed",
             (snapshot) => {
-              // Quản lý tiến trình tải lên nếu cần
             },
             (error) => {
               console.error("Error uploading file: ", error);
@@ -191,8 +233,8 @@
             async () => {
               // Tải tệp thành công, lấy URL của tệp
               await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                // Tạo object chứa dữ liệu cần thêm vào Firestore
                 let userData = {
+                  idJob: idJob,
                   ten_cong_viec: staticten_cong_viec_value,
                   ho_va_ten: ho_va_ten_value,
                   SDT: SDT_value,
@@ -200,7 +242,7 @@
                   khu_vuc_du_tuyen: khu_vuc_du_tuyen_value,
                   muc_luong: muc_luong_mongmuon_value,
                   timeGoJob: timeGoJob_value,
-                  formFile: downloadURL, // Lưu đường dẫn của tệp
+                  formFile: downloadURL,
                 };
 
                 // Thêm dữ liệu vào Firestore
@@ -208,12 +250,18 @@
               });
               clearForm();
               alert('Đã gửi thông tin thành công.');
+              const tableBody = document.querySelector("#cvRecruitmentTable tbody");
+              await removeAllChildren(tableBody);
+              Danhsachdon();
             }
           );
         } catch (error) {
           console.error("Error uploading file: ", error);
           alert('Gửi thông tin thất bại.');
         }
+      }
+      else {
+        alert('Hãy thêm đầy đủ thông tin!')
       }
     });
     // clearForm
@@ -225,6 +273,71 @@
       muc_luong_mongmuon.value = "";
       timeGoJob.value = "";
       formFile.value = "";
+    }
+
+
+
+    // danh sách đơn
+    function removeAllChildren(parentElement) {
+      // Lặp qua tất cả các phần tử con của phần tử cha và xóa chúng
+      while (parentElement.firstChild) {
+        parentElement.removeChild(parentElement.firstChild);
+      }
+    }
+
+    Danhsachdon();
+    async function Danhsachdon() {
+      let dataCvRecruitment = [];
+      const querySnapshot = await getDocs(query(collection(db, "ungtuyen"), where("idJob", "==", JSON.parse(dataString).id)));
+      querySnapshot.forEach((doc) => {
+        dataCvRecruitment.push(doc.data());
+      });
+
+      const tableBody = document.querySelector("#cvRecruitmentTable tbody");
+
+      dataCvRecruitment.forEach((data, index) => {
+        const row = document.createElement("tr");
+
+        const indexCell = document.createElement("td");
+        indexCell.textContent = index + 1;
+        row.appendChild(indexCell);
+
+        const nameCell = document.createElement("td");
+        nameCell.textContent = data.ho_va_ten;
+
+        row.appendChild(nameCell);
+
+        const sdtlCell = document.createElement("td");
+        sdtlCell.textContent = data.SDT;
+        row.appendChild(sdtlCell);
+
+        const emailCell = document.createElement("td");
+        emailCell.textContent = data.Email;
+        row.appendChild(emailCell);
+
+        const khu_vuc_du_tuyenCell = document.createElement("td");
+        khu_vuc_du_tuyenCell.textContent = data.khu_vuc_du_tuyen;
+        row.appendChild(khu_vuc_du_tuyenCell);
+
+        const muc_luongCell = document.createElement("td");
+        muc_luongCell.textContent = data.muc_luong;
+        row.appendChild(muc_luongCell);
+
+        const thoigian_dilamCell = document.createElement("td");
+        thoigian_dilamCell.textContent = data.timeGoJob;
+        row.appendChild(thoigian_dilamCell);
+
+        const downloadLink = document.createElement("a");
+        downloadLink.href = data.formFile;
+        downloadLink.download = `CV_${data.ho_va_ten}`;
+        downloadLink.textContent = "Tải CV";
+        const download_Cv = document.createElement("td");
+        download_Cv.appendChild(downloadLink);
+        row.appendChild(download_Cv);
+
+        tableBody.appendChild(row);
+      });
+
     }
 
 
