@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function displayJobs(jobs) {
     jobsContainer.innerHTML = "";
-
     jobs.forEach((job) => {
       if (
         (locationFilter.value === "all" ||
@@ -182,10 +181,10 @@ document.addEventListener("DOMContentLoaded", function () {
         method: "DELETE",
       }
     )
-      .then((response) => {
+      .then( (response) => {
         if (response.ok) {
           console.log("Job deleted successfully.");
-          fetchAndDisplayJobs();
+           fetchAndDisplayJobs();
           console.log("dâdsd");
         } else {
           console.error("Error deleting job:", response.status);

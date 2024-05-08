@@ -79,6 +79,29 @@
         </div>
       </form>
 
+      <!-- danh sach ứng tuyển -->
+      <div class="ds_ungtuyen" style="margin-top: 50px">
+        <h1>Danh sách ứng tuyển</h1>
+        <table id="cvRecruitmentTable" class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Tên</th>
+              <th scope="col">Email</th>
+              <th scope="col">SĐT</th>
+              <th scope="col">Khu vực tuyển</th>
+              <th scope="col">Mức lương (Triệu)</th>
+              <th scope="col">Thời gian đi làm</th>
+              <!-- Thêm các cột khác tùy thuộc vào dữ liệu bạn muốn hiển thị -->
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- danh sách việc làm -->
       <form class="p-2" style="margin-top: 50px">
         <h1 class="text-lg-start">Danh sách việc làm</h1>
         <div class="job-filters">
@@ -104,7 +127,112 @@
         </div>
       </form>
     </div>
- 
+
     <script src="./curdJob.js"></script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
+      import {
+        getFirestore,
+        addDoc,
+        doc,
+        collection,
+        getDocs,
+        Timestamp,
+        query,
+        where,
+      } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+      import {
+        getStorage,
+        ref,
+        uploadBytesResumable,
+        getDownloadURL,
+      } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      //  const firebaseConfig = {
+      // apiKey: "AIzaSyCWRu_5X9O_cHMcMXQ76J3xu7T_wlRlpwg",
+      //  authDomain: "tuyendung-ddb38.firebaseapp.com",
+      //  projectId: "tuyendung-ddb38",
+      //storageBucket: "tuyendung-ddb38.appspot.com",
+      //  messagingSenderId: "534249087557",
+      // appId: "1:534249087557:web:aa9a4334a58c8644ebf92c",
+      //  measurementId: "G-6MTRZ0HG5X",
+      //};
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyARklL3NIV41rUdtS1ae0bUSHtB2DHLShI",
+        authDomain: "travelivez-career.firebaseapp.com",
+        projectId: "travelivez-career",
+        storageBucket: "travelivez-career.appspot.com",
+        messagingSenderId: "946388351840",
+        appId: "1:946388351840:web:2068ceddc2b1c084b13c05",
+        measurementId: "G-HNP393B75Q",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const db = getFirestore(app);
+      const storage = getStorage(app);
+
+      Danhsachdon();
+      async function Danhsachdon() {
+        let dataCvRecruitment = [];
+        const querySnapshot = await getDocs(query(collection(db, "ungtuyen")));
+        querySnapshot.forEach((doc) => {
+          dataCvRecruitment.push(doc.data());
+        });
+
+        const tableBody = document.querySelector("#cvRecruitmentTable tbody");
+
+        dataCvRecruitment.forEach((data, index) => {
+          const row = document.createElement("tr");
+
+          const indexCell = document.createElement("td");
+          indexCell.textContent = index + 1;
+          row.appendChild(indexCell);
+
+          const nameCell = document.createElement("td");
+          nameCell.textContent = data.ho_va_ten;
+
+          row.appendChild(nameCell);
+
+          const sdtlCell = document.createElement("td");
+          sdtlCell.textContent = data.SDT;
+          row.appendChild(sdtlCell);
+
+          const emailCell = document.createElement("td");
+          emailCell.textContent = data.Email;
+          row.appendChild(emailCell);
+
+          const khu_vuc_du_tuyenCell = document.createElement("td");
+          khu_vuc_du_tuyenCell.textContent = data.khu_vuc_du_tuyen;
+          row.appendChild(khu_vuc_du_tuyenCell);
+
+          const muc_luongCell = document.createElement("td");
+          muc_luongCell.textContent = data.muc_luong;
+          row.appendChild(muc_luongCell);
+
+          const thoigian_dilamCell = document.createElement("td");
+          thoigian_dilamCell.textContent = data.timeGoJob;
+          row.appendChild(thoigian_dilamCell);
+
+          const downloadLink = document.createElement("a");
+          downloadLink.href = data.formFile;
+          downloadLink.download = `CV_${data.ho_va_ten}`;
+          downloadLink.textContent = "Tải CV";
+          const download_Cv = document.createElement("td");
+          download_Cv.appendChild(downloadLink);
+          row.appendChild(download_Cv);
+
+          tableBody.appendChild(row);
+        });
+      }
+    </script>
   </body>
 </html>

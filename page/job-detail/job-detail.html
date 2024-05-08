@@ -77,40 +77,14 @@
         <span style="color: #4c4a4a">(Click để tải lên CV của bạn)</span>
       </p>
       <div class="mb-3">
-        <input class="form-control" type="file" id="formFile" />
+        <input class="form-control" type="file" id="formFile"  accept=".pdf"/>
       </div>
       <div class="col-12">
         <div class="btn btn-primary" id="submit_ungtuyen">Ứng tuyển ngay</div>
       </div>
-      <!-- test Tải CV -->
-      <!-- <div class="col-12" style="margin-top: 20px;">
-        <div class="btn btn-primary" id="submit_taicv"><a
-            href="https://firebasestorage.googleapis.com/v0/b/travelivez-career.appspot.com/o/files%2Fimg_01.png?alt=media&token=59be3b33-9cb1-4622-bf01-a16be28a68ab"
-            download="">Tải CV</a></div>
-      </div> -->
     </div>
 
-    <!-- danh sach ứng tuyển -->
-    <div class="ds_ungtuyen">
-      <h3>Danh sách ứng tuyển</h3>
-      <table id="cvRecruitmentTable" class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Tên</th>
-            <th scope="col">Email</th>
-            <th scope="col">SĐT</th>
-            <th scope="col">Khu vực tuyển</th>
-            <th scope="col">Mức lương (Triệu)</th>
-            <th scope="col">Thời gian đi làm</th>
-            <!-- Thêm các cột khác tùy thuộc vào dữ liệu bạn muốn hiển thị -->
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
-        </tbody>
-      </table>
-    </div>
+ 
   </div>
 
   <script src="./job-detail.js"></script>
@@ -250,9 +224,6 @@
               });
               clearForm();
               alert('Đã gửi thông tin thành công.');
-              const tableBody = document.querySelector("#cvRecruitmentTable tbody");
-              await removeAllChildren(tableBody);
-              Danhsachdon();
             }
           );
         } catch (error) {
@@ -285,62 +256,7 @@
       }
     }
 
-    Danhsachdon();
-    async function Danhsachdon() {
-      let dataCvRecruitment = [];
-      const querySnapshot = await getDocs(query(collection(db, "ungtuyen"), where("idJob", "==", JSON.parse(dataString).id)));
-      querySnapshot.forEach((doc) => {
-        dataCvRecruitment.push(doc.data());
-      });
-
-      const tableBody = document.querySelector("#cvRecruitmentTable tbody");
-
-      dataCvRecruitment.forEach((data, index) => {
-        const row = document.createElement("tr");
-
-        const indexCell = document.createElement("td");
-        indexCell.textContent = index + 1;
-        row.appendChild(indexCell);
-
-        const nameCell = document.createElement("td");
-        nameCell.textContent = data.ho_va_ten;
-
-        row.appendChild(nameCell);
-
-        const sdtlCell = document.createElement("td");
-        sdtlCell.textContent = data.SDT;
-        row.appendChild(sdtlCell);
-
-        const emailCell = document.createElement("td");
-        emailCell.textContent = data.Email;
-        row.appendChild(emailCell);
-
-        const khu_vuc_du_tuyenCell = document.createElement("td");
-        khu_vuc_du_tuyenCell.textContent = data.khu_vuc_du_tuyen;
-        row.appendChild(khu_vuc_du_tuyenCell);
-
-        const muc_luongCell = document.createElement("td");
-        muc_luongCell.textContent = data.muc_luong;
-        row.appendChild(muc_luongCell);
-
-        const thoigian_dilamCell = document.createElement("td");
-        thoigian_dilamCell.textContent = data.timeGoJob;
-        row.appendChild(thoigian_dilamCell);
-
-        const downloadLink = document.createElement("a");
-        downloadLink.href = data.formFile;
-        downloadLink.download = `CV_${data.ho_va_ten}`;
-        downloadLink.textContent = "Tải CV";
-        const download_Cv = document.createElement("td");
-        download_Cv.appendChild(downloadLink);
-        row.appendChild(download_Cv);
-
-        tableBody.appendChild(row);
-      });
-
-    }
-
-
+    
 
   </script>
 </body>
